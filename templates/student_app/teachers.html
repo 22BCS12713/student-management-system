@@ -1,0 +1,45 @@
+{% extends 'student_app/base.html' %}
+
+{% block content %}
+
+<div class="header">
+    <h2>Teachers</h2>
+    <a href="{% url 'add_teachers' %}" class="add-btn">+ Add Teacher</a>
+</div>
+
+<table>
+    <tr>
+        <th>S.No</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Subject</th>
+        <th>Class</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    {% for i in teacher %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ i.name }}</td>
+        <td>{{ i.email }}</td>
+        <td>{{ i.mobile_number }}</td>
+        <td>{{ i.subjects }}</td>
+        <td>{{ i.Assigned_class }}</td>
+        <td><span class="status">Active</span></td>
+        <td class="action">
+            <a href="{% url 'edit_teacher' i.id %}">Edit</a>
+            <a href="{% url 'delete_teacher' i.id %}" class="delete">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>
+
+{% endblock %}

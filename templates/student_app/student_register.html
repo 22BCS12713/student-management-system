@@ -1,0 +1,58 @@
+{% extends 'student_app/base.html' %}
+{% block content %}
+<div class="container">
+
+    <h2>Student Registration</h2>
+    <h3>Step 1: Basic Details</h3>
+
+    <!-- Messages -->
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "success" %}
+                <p style="color:green;">{{ message }}</p>
+            {% else %}
+                <p style="color:red;">{{ message }}</p>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    <!-- Form -->
+    <form action="{% url 'register_url' %}" method="post">
+        {% csrf_token %}
+
+        <label>Student Name</label>
+        <input type="text" name="student_name" required>
+
+        <label>Father's Name</label>
+        <input type="text" name="father_name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Mobile Number</label>
+        <input type="tel" name="mobile_number" maxlength="10" required>
+
+        <label>Date of Birth</label>
+        <input type="date" name="dob" required>
+
+        <label>Gender</label>
+        <select name="gender" required>
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+
+        <label>Class</label>
+        <input type="text" name="class_student" required>
+
+        <label>Roll Number</label>
+        <input type="text" name="roll_number" required>
+
+        <button type="submit">Register</button>
+
+    </form>
+
+</div>
+
+{% endblock %}

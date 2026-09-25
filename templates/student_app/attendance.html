@@ -1,0 +1,96 @@
+{% extends 'student_app/base.html' %}
+{% block content %}
+
+<div class="container">
+
+    <h2>📊 Attendance </h2>
+    <p>View studendents attendance records and summary</p>
+
+    <!-- FILTER FORM -->
+    <form method="GET" class="top-filters">
+
+        <input type="date" name="date" value="{{ request.GET.date }}">
+
+        <select name="class">
+            <option value="">All Classes</option>
+            {% for i in classes%}            
+            <option value='{i}'>{{ i }}</option>
+            {% endfor %}
+        </select>
+
+        <select name="section">
+            <option value="All">All Sections</option>
+            {% for i in classes%}            
+            <option value='{i}'>{{ i }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Filter</button>
+
+    </form>
+
+    <!-- STATS -->
+    <div class="stats">
+
+        <div class="card green">
+            <h4>Present</h4>
+            <h2>{{ present_count }}</h2>
+        </div>
+
+        <div class="card red">
+            <h4>Absent</h4>
+            <h2>{{ absent_count }}</h2>
+        </div>
+
+        <div class="card blue">
+            <h4>Total</h4>
+            <h2>{{ total_students }}</h2>
+        </div>
+
+        <div class="card purple">
+            <h4>Date</h4>
+            <h2>{{ selected_date|default:"Today" }}</h2>
+        </div>
+
+    </div>
+
+    <!-- TABLE -->
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Class</th>
+                <th>Section</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for att in attendance %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ att.student.name }}</td>
+                <td>{{ att.student.class_name }}</td>
+                <td>{{ att.student.section }}</td>
+                <td>
+                    {% if att.status == "Present" %}
+                        <span class="present">Present</span>
+                    {% else %}
+                        <span class="absent">Absent</span>
+                    {% endif %}
+                </td>
+                <td>{{ att.date }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No Data Found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

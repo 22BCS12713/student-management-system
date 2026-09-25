@@ -1,0 +1,88 @@
+{% extends 'student_app/base.html' %}
+
+{% block content %}
+
+<div class="content">
+
+    <h1>Dashboard</h1>
+    <p class="subtitle">Welcome to Student Management System</p>
+
+    <!-- CARDS -->
+    <div class="dashboard-cards">
+
+        <div class="dashboard-card">
+            <h3>Total Students</h3>
+            <h2>{{ total_students }}</h2>
+            <p>Registered Students</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Attendance</h3>
+            <h2>{{ attendance_count }}</h2>
+            <p>Coming soon</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Leave Requests</h3>
+            <h2>--</h2>
+            <p>Coming soon</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Notifications</h3>
+            <h2>{{ notification_count }}</h2>
+            <p>Coming soon</p>
+        </div>
+
+    </div>
+
+    <!-- QUICK ACTION -->
+    <div class="quick-actions">
+        <h2>Quick Actions</h2>
+
+        <a href="{% url 'register_url' %}" class="btn-primary">
+            ➕ Add Student
+        </a>
+
+        <a href="{% url 'table_url' %}" class="btn-secondary">
+            📋 View Students
+        </a>
+    </div>
+
+    <!-- RECENT STUDENTS -->
+    <div class="recent-section">
+
+        <div class="section-header">
+            <h2>Recent Students</h2>
+            <a href="{% url 'table_url' %}">View All</a>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Student Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for student in recent_students %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ student.student_name }}</td>
+                    <td>{{ student.email }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3">No students found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

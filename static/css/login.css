@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #eef2f7;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Login Heading */
+h2 {
+    position: absolute;
+    top: 70px;
+    color: #1e293b;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* Login Card */
+form {
+    width: 400px;
+    padding: 38px 40px;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Input Fields */
+input {
+    width: 100%;
+    height: 45px;
+    padding: 0 13px;
+    margin-bottom: 2px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #1e293b;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+input::placeholder {
+    color: #94a3b8;
+}
+
+input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+/* Login Button */
+button {
+    width: 100%;
+    height: 45px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 7px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background: #1d4ed8;
+    box-shadow: 0 5px 12px rgba(37, 99, 235, 0.25);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    h2 {
+        top: 45px;
+        font-size: 26px;
+    }
+
+    form {
+        width: calc(100% - 30px);
+        padding: 30px 25px;
+    }
+}

@@ -1,0 +1,103 @@
+{% extends 'student_app/base.html' %}
+
+{% block content %}
+
+<div class="page-header">
+    <h2>📢 Send Notification</h2>
+    <p>Send important updates to students, teachers or specific classes.</p>
+</div>
+
+<div class="notification-wrapper">
+
+    <!-- LEFT SIDE FORM -->
+    <div class="form-container">
+
+        <h2>Create New Notification</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Send To -->
+            <div class="form-row">
+                <label>Send To</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="send_to" value="students_all"> All Students</label>
+                    <label><input type="radio" name="send_to" value="class"> Specific Class</label>
+                    <label><input type="radio" name="send_to" value="teachers_all"> All Teachers</label>
+                    <label><input type="radio" name="send_to" value="teacher"> Specific Teacher</label>
+                </div>
+            </div>
+
+            <!-- Title -->
+            <div class="form-row">
+                <label>Title</label>
+                <input type="text" name="title" placeholder="Enter notification title" required>
+            </div>
+
+            <!-- Message -->
+            <div class="form-row">
+                <label>Message</label>
+                <textarea name="message" placeholder="Enter your message" required></textarea>
+            </div>
+
+            <!-- Row 2 column -->
+            <div class="form-row two-col">
+                <div>
+                    <label>Message Type</label>
+                    <select name="message_type">
+                        <option value="general">General</option>
+                        <option value="important">Important</option>
+                        <option value="alert">Alert</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Schedule (Optional)</label>
+                    <input type="date" name="sceduled_date">
+                </div>
+            </div>
+
+            <!-- File -->
+            <div class="form-row">
+                <label>Attach File</label>
+                <input type="file" name="attaced_file">
+            </div>
+
+            <button type="submit" class="btn">Send Notification</button>
+
+        </form>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="notification-side">
+
+        <div class="side-header">
+            <h3>Recent Notifications</h3>
+            <a href="#">View All</a>
+        </div>
+
+        <div class="card green">
+            <strong>Holiday Update</strong>
+            <p>School will remain closed tomorrow</p>
+        </div>
+
+        <div class="card blue">
+            <strong>Maths Homework</strong>
+            <p>Complete worksheet</p>
+        </div>
+
+        <div class="card yellow">
+            <strong>Exam Notice</strong>
+            <p>Unit test from 25th</p>
+        </div>
+
+        <div class="card purple">
+            <strong>Parent Meeting</strong>
+            <p>PTM on Saturday</p>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
